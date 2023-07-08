@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1,maximum-scale=5"
+  />
+
+  <link rel="icon" href="devchallenges.png" />
+
+  <link
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="https://devchallenges.io/"
+  />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet"> 
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.5.11/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <title>Devchallenges</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Montserrat", "Ubuntu", sans-serif;
+    }
+
+    .container {
+      display: grid;
+
+      gap: 20px;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    .container ul {
+      list-style: none;
+      font-size: 14px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .container ul li {
+      line-height: 1.5;
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: "Ubuntu", sans-serif;
+    }
+
+    li h3 {
+      margin: 10px 0;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <v-app>
+      <v-main>
+        <div class="container">
+          <h1 :class="[cls, 'pa-2', text-center]">Buttons</h1>
+        </div>
+        
+        <div class="container">
+          <ul>
+            <li>
+              <h3>< v-btn /></h3>
+              <v-btn>
+                Button
+              </v-btn>
+            </li>
+            <li>
+              <h3>&:hover, &:focus</h3>
+              <v-btn>
+                Button
+              </v-btn>
+            </li>
+          </ul>
+        </div>
+        <div class="container">
+          <ul>
+            <li>
+              <h3>< v-btn variant="outline" /></h3>
+              <v-btn variant="outlined">
+                Button
+              </v-btn>
+            </li>
+            <li>
+              <h3>&:hover, &:focus</h3>
+              <v-btn>
+                Button
+              </v-btn>
+            </li>
+          </ul>
+        </div>
+        <div class="container">
+          <ul>
+            <li>
+              <h3>< v-btn variant="text" /></h3>
+              <v-btn>
+                Button
+              </v-btn>
+            </li>
+            <li>
+              <h3>&:hover, &:focus</h3>
+              <v-btn>
+                Button
+              </v-btn>
+            </li>
+          </ul>        
+        </div>
+        <div class="container">
+          <ul>
+            <li>
+              <h3>< v-btn disableShadow /></h3>
+              <v-btn>
+                Button
+              </v-btn>
+            </li>
+          </ul>
+        </div>
+        <v-row class="mt-0">
+          <v-col cols="5" class="mx-0 pr-0">
+            <v-btn dense block color="primary">Follower</v-btn>
+          </v-col>
+          <v-col cols="5" class="mx-0 pr-0">
+            <v-btn dense block>Message</v-btn>
+          </v-col>
+          <v-col cols="1">
+            <v-btn dense width="70%"><v-icon>mdi-chevron-down</v-icon></v-btn>
+          </v-col>
+        </v-row>
+
+      </v-main>
+    </v-app>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data() {
+        return {
+
+        }
+      },
+    });
+  </script>
+</body>
+</html>

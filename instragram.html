@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.5.11/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <title>@CharlesDarwin</title>
+</head>
+
+<body>
+  <div id="app">
+    <v-app>
+      <v-main>
+        <div>
+          <v-system-bar dark color="indigo darken-2">
+            <span>12:30</span>
+            <v-spacer></v-spacer>
+            <v-icon>mdi-wifi-strength-2</v-icon>
+            <v-icon>mdi-signal-cellular-2</v-icon>
+            <v-icon>mdi-battery-70</v-icon>
+            T
+          </v-system-bar>
+        </div>
+        <v-responsive id="hide-on-scroll-example" class="overflow-y-auto" max-height="600">
+          <v-responsive height="700">
+            <v-container>
+              <v-row class="pt-5">
+                <v-btn icon><v-icon>mdi-arrow-left</v-icon></v-btn>
+                <strong class="pl-6">
+                  {{ usuario }}
+                </strong>
+                <v-spacer></v-spacer>
+                <v-btn icon><v-icon>mdi-dots-vertical</v-icon></v-btn>
+              </v-row>
+              <v-row class="pt-1" align="center" justify="center">
+                <v-col cols="3">
+                  <v-avatar size="90">
+                    <img
+                      src="https://images.ecestaticos.com/LqqojMaKnJ5CX7gkTf6VnF09g5w=/123x4:1441x1592/624x752/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F5ac%2F808%2Faf7%2F5ac808af7e2507b605ea0c1d79f245d3.jpg"
+                      alt="Charles">
+                  </v-avatar>
+                </v-col>
+                <v-col cols="3">
+                  <p class="text-center">
+                    <strong>{{ Posts }}</strong>
+                    Posts
+                  </p>
+                </v-col>
+                <v-col cols="3">
+                  <p class="text-center">
+                    <strong>{{ Followers }}</strong>
+                    Followers
+                  </p>
+                </v-col>
+                <v-col cols="3">
+                  <p class="text-center">
+                    <strong>{{ Following }}</strong>
+                    Following
+                  </p>
+                </v-col>
+              </v-row>
+              <v-row class="mt-0">
+                <v-col cols="7">
+                  <strong>
+                    {{ nombre }}
+                  </strong>
+                  <p class="mb-0">{{ Biografía }}</p>
+                  {{ biogicon }}
+                </v-col>
+              </v-row>
+              <v-row class="mt-0">
+                <v-col cols="5" class="mx-0 pr-0">
+                  <v-btn dense block color="primary">Follower</v-btn>
+                </v-col>
+                <v-col cols="5" class="mx-0 pr-0">
+                  <v-btn dense block>Message</v-btn>
+                </v-col>
+                <v-col cols="1">
+                  <v-btn dense width="70%"><v-icon>mdi-chevron-down</v-icon></v-btn>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-tabs v-model="tab" centered height="40" icons-and-text color="#E30E4F" >
+                  <v-tabs-slider></v-tabs-slider>
+
+                  <v-tab href="#gallery">
+                    <v-icon>mdi-grid</v-icon>
+                  </v-tab>
+
+                  <v-tab href="#reels">
+                    <v-icon>mdi-video-vintage</v-icon>
+                  </v-tab>
+
+                  <v-tab href="#shop">
+                    <v-icon>mdi-shopping-outline</v-icon>
+                  </v-tab>
+
+                  <v-tab href="#mencions">
+                    <v-icon>mdi-clipboard-account-outline</v-icon>
+                  </v-tab>
+                </v-tabs>
+
+              </v-row>
+              <v-row class="mt-3" v-if="tab == 'gallery'">
+                <v-col v-for="(item, n) in Publicaciones" :key="n" class="d-flex child-flex ma-0 pa-0" cols="4">
+                  <v-img :src="item.src"
+                    :lazy-src="item.src" aspect-ratio="1"
+                    class="grey lighten-2">
+                    <template v-slot:placeholder>
+                      <v-row class="fill-height ma-0" align="center" justify="center">
+                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                      </v-row>
+                    </template>
+                  </v-img>
+                </v-col>
+              </v-row>
+            </v-container>
+
+          </v-responsive>
+        </v-responsive>
+        <v-bottom-navigation absolute hide-on-scroll scroll-target="#hide-on-scroll-example">
+          <v-btn>
+            <v-icon>mdi-home</v-icon>
+          </v-btn>
+          <v-btn>
+            <v-icon>mdi-magnify</v-icon>
+          </v-btn>
+          <v-btn>
+            <v-icon>mdi-plus-box-outline</v-icon>
+          </v-btn>
+          <v-btn>
+            <v-icon>mdi-video-vintage</v-icon>
+          </v-btn>
+          <v-btn>
+            <v-icon>mdi-account-circle-outline</v-icon>
+          </v-btn>
+        </v-bottom-navigation>
+      </v-main>
+    </v-app>
+  </div>
+  
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data() {
+        return {
+          tab: 0,
+          value: 1,
+          usuario: "@CharlesDarwin",
+          nombre: "Charles Darwin",
+          Biografía: "Explorador y defensor de la teoría de la evolución",
+          biogicon: "🌿🐢🌍",
+          Posts: 137,
+          Followers: "+10k",
+          Following: 235,
+          recientes: ['AlfredRusselWallace', 'GalapagosFoundation', 'MuseoDeHistoriaNatural'],
+          Acerca: '🔬 Científico y naturalista británico, nacido el 12 de febrero de 1809 en Shrewsbury, Reino Unido 🇬🇧\n🌍 Realicé un viaje épico a bordo del HMS Beagle entre 1831 y 1836 🚢⚓️\n🐢 Estudié la fauna y flora de las Galápagos, donde observé las diferencias en las especies de pinzones 🐦🌴\n📚 Escribí "El origen de las especies" en 1859, donde presenté mi teoría de la evolución por selección natural 📖🌿\n💡 Mis ideas revolucionaron el campo de la biología y cambiaron la forma en que entendemos la diversidad de la vida en la Tierra 🌎',
+          Intereses: '🔬 Biología, ciencia y observación de la naturaleza 🦜🌿🔬\n🌴 Islas Galápagos y su extraordinaria biodiversidad 🐢🐦🌺\n📚 Lectura de libros científicos y filosóficos 📖🤓\n🎨 Pintura y dibujo de especies naturales 🎨🌿\n🌱 Conservación de la naturaleza y protección de las especies en peligro de extinción 🦥🌿🌍',
+          Publicaciones: [
+            { id: 1, src: 'https://media.istockphoto.com/id/479910306/es/foto/la-tortuga-de-mar-amplio-borde-en-el-fondo-del-paisaje-tropical.jpg?s=612x612&w=0&k=20&c=MG6alcT1_Da_KDVI1lSoteJB2khSLvZVeSaobyN1H-c=', alt: 'Imagen 1', texto: '¡Un paraíso natural donde la evolución cobra vida! 🐢🌴 #Galapagos #Naturaleza' },
+            { id: 2, src: 'https://cdn0.unprofesor.com/es/posts/1/7/0/resumen_de_el_origen_de_las_especies_de_darwin_2071_0_600.jpg', alt: 'Imagen 2', texto: '¡Mi obra maestra que revolucionó la biología! 📖🌿 #TeoríaDeLaEvolución' },
+            { id: 3, src: 'https://geoinnova.org/wp-content/uploads/2021/08/glp-vampire-finch-14.jpg', alt: 'Imagen 3', texto: 'Estos pajaritos me enseñaron mucho sobre la adaptación y la evolución 🐧🌿 #EspeciesUnicas' },
+            { id: 4, src: 'https://www.minutoar.com.ar/u/fotografias/m/2021/4/19/f1280x720-54907_186582_5050.jpg', alt: 'Imagen 4', texto: '¡La belleza de la flora nunca deja de asombrarme! 🌺🌿 #FloraIncreíble' },
+            { id: 5, src: 'https://fotos.perfil.com/2023/04/18/trim/1280/720/dia-mundial-de-la-tierra-1549381.jpg', alt: 'Imagen 5', texto: 'Recordando mi viaje alrededor del mundo en busca de descubrimientos científicos 🌍🚢 #Explorador' },
+          ]
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
